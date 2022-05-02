@@ -17,7 +17,8 @@ public class Main {
 		}
 		System.out.println("---------------------------------\n---------------------------------\n");
 		
-		SelectionSort.ordenar(vetor);
+		//SelectionSort.ordenar(vetor);
+		InsertionSort.ordenar(vetor);
 		
 		for(int i = 0; i < vetor.length; i++) {
 			System.out.println("Valor = " + vetor[i].getValor() + "\nChave = " + vetor[i].getChave() + "\n");
