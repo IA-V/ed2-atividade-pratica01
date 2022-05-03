@@ -36,7 +36,7 @@ public class SelectionSort {
 			/* Aqui no "for" interno, "j < k" se deve ao fato de que não é necessário sempre iterar sobre todo o array, pois de "k" até "vetor.length-1",
 			 * os elementos serão sempre maiores que "min". O mesmo se aplica de "k-1" até o 1º elemento.
 			 */
-			for(int j = i+1, l = k-1; j < k; j++, l--) {
+			for(int j = i+1, l = k-1; j <= k; j++, l--) {
 				
 				// Se o retorno do método for menor que 0, então o valor que está em "j" é menor que o que está em "min"
 				if(vetor[j].compararCom(vetor[min].getChave()) < 0) {

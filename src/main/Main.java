@@ -6,9 +6,9 @@ public class Main {
 	public static void main (String [] args) {
 		Estrutura<Integer, String>[] vetor = new Estrutura[10];
 		vetor[0] = new Estrutura<>(5, "cafe");
-		vetor[1] = new Estrutura<>(2, "agua");
+		vetor[1] = new Estrutura<>(3, "agua");
 		vetor[2] = new Estrutura<>(4, "colchao");
-		vetor[3] = new Estrutura<>(3, "espada");
+		vetor[3] = new Estrutura<>(2, "espada");
 		vetor[4] = new Estrutura<>(9, "duelo");
 		vetor[5] = new Estrutura<>(6, "duelo");
 		vetor[6] = new Estrutura<>(10, "duelo");
