@@ -3,13 +3,13 @@ package ordenacao;
 import armazenamento.Estrutura;
 
 public class QuickSort {
-	public static void ordenar(Estrutura<?, ?>[] vetor) {
-		Estrutura<?, ?>[] temp = new Estrutura[vetor.length];
+	public static void ordenar(Estrutura[] vetor) {
+		Estrutura[] temp = new Estrutura[vetor.length];
 		
 		quickSort(vetor, 0, vetor.length-1);
 	}
 	
-	private static void quickSort(Estrutura<?, ?>[] vetor, int inicio, int fim) {
+	private static void quickSort(Estrutura[] vetor, int inicio, int fim) {
 		if(inicio < fim) {
 			int posicaoPivo = particiona(vetor, inicio, fim);
 			
@@ -18,8 +18,8 @@ public class QuickSort {
 		}
 	}
 	
-	private static int particiona(Estrutura<?, ?>[] vetor, int inicio, int fim) {
-		Estrutura<?, ?> pivo = vetor[inicio];
+	private static int particiona(Estrutura[] vetor, int inicio, int fim) {
+		Estrutura pivo = vetor[inicio];
 		int i = inicio + 1;
 		int f = fim;
 		
@@ -29,7 +29,7 @@ public class QuickSort {
 			} else if(vetor[i].compararCom(pivo.getChave()) > 0) {
 				f--;
 			} else {
-				Estrutura<?, ?> troca = vetor[i];
+				Estrutura troca = vetor[i];
 				vetor[i] = vetor[f];
 				vetor[f] = troca;
 				i++;

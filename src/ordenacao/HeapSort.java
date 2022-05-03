@@ -4,10 +4,10 @@ import java.lang.Math;
 import armazenamento.Estrutura;
 
 public class HeapSort {
-	public static void ordenar(Estrutura<?, ?>[] vetor) {
+	public static void ordenar(Estrutura[] vetor) {
 		buildMaxHeap(vetor, vetor.length);
 		for(int i = vetor.length - 1; i >= 1; i--) {
-			Estrutura<?, ?> aux = vetor[0];
+			Estrutura aux = vetor[0];
 			vetor[0] = vetor[i];
 			vetor[i] = aux;
 			
@@ -15,14 +15,14 @@ public class HeapSort {
 		}
 	}
 	
-	private static void buildMaxHeap(Estrutura<?, ?>[] vetor, int tamanho) {
+	private static void buildMaxHeap(Estrutura[] vetor, int tamanho) {
 		for(int i = Math.floorDiv(tamanho, 2); i >= 0; i--) {
 			//System.out.println(i);
 			maxHeapify(vetor, i, tamanho);
 		}
 	}
 
-	private static void maxHeapify(Estrutura<?, ?>[] vetor, int indice, int tamanhoAtual) {
+	private static void maxHeapify(Estrutura[] vetor, int indice, int tamanhoAtual) {
 		int e = esq(indice);
 		int d = dir(indice);
 		int maior;
@@ -38,7 +38,7 @@ public class HeapSort {
 		}
 		
 		if(maior != indice) {
-			Estrutura<?, ?> aux = vetor[maior];
+			Estrutura aux = vetor[maior];
 			vetor[maior] = vetor[indice];
 			vetor[indice] = aux;
 			

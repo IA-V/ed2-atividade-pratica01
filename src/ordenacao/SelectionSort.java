@@ -3,7 +3,7 @@ package ordenacao;
 import armazenamento.Estrutura;
 
 public class SelectionSort {
-	public static void ordenar(Estrutura<?, ?>[] vetor) {
+	public static void ordenar(Estrutura[] vetor) {
 		for(int i = 0; i < vetor.length-1; i++) {
 			int min = i;
 			for(int j = i+1; j < vetor.length; j++) {
@@ -13,7 +13,7 @@ public class SelectionSort {
 				}
 			}
 			
-			Estrutura<?, ?> aux = vetor[i];
+			Estrutura aux = vetor[i];
 			vetor[i] = vetor[min];
 			vetor[min] = aux;
 		}

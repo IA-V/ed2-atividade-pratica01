@@ -3,13 +3,13 @@ package ordenacao;
 import armazenamento.Estrutura;
 
 public class MergeSort {
-	public static void ordenar(Estrutura<?, ?>[] vetor) {
-		Estrutura<?, ?>[] temp = new Estrutura[vetor.length];
+	public static void ordenar(Estrutura[] vetor) {
+		Estrutura[] temp = new Estrutura[vetor.length];
 		
 		mergeMain(vetor, temp, 0, vetor.length-1);
 	}
 	
-	private static Estrutura<?, ?>[] mergeMain(Estrutura<?, ?>[] vetor, Estrutura<?, ?>[] temp, int esq, int dir) {
+	private static Estrutura[] mergeMain(Estrutura[] vetor, Estrutura[] temp, int esq, int dir) {
 		int meio;
 		
 		if(esq < dir) {
@@ -22,7 +22,7 @@ public class MergeSort {
 		return vetor;
 	}
 	
-	private static void merge(Estrutura<?, ?>[] vetor, Estrutura<?, ?>[] temp, int esqPos, int dirPos, int dirFim) {
+	private static void merge(Estrutura[] vetor, Estrutura[] temp, int esqPos, int dirPos, int dirFim) {
 		int esqFim = dirPos-1;
 		int tempPos = esqPos;
 		int numElem = dirFim - esqPos + 1;

@@ -3,8 +3,8 @@ package ordenacao;
 import armazenamento.Estrutura;
 
 public class InsertionSort {
-	public static void ordenar(Estrutura<?, ?>[] vetor) {
-		Estrutura<?, ?> chave;
+	public static void ordenar(Estrutura[] vetor) {
+		Estrutura chave;
 		for(int i = 1; i < vetor.length; i++) {
 			chave = vetor[i];
 			int j;
