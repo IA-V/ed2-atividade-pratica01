@@ -3,7 +3,7 @@ import armazenamento.*;
 import ordenacao.*;
 
 public class Main {
-	public static void main (String [] args) {
+	public static void main (String [] args) {		
 		Estrutura[] vetor = new EstruturaChaveString[5];
 		vetor[0] = new EstruturaChaveString<>("a", 12);
 		vetor[1] = new EstruturaChaveString<>("d", 13);

@@ -2,7 +2,7 @@ package armazenamento;
 
 import java.util.Comparator;
 
-public abstract class EstruturaClasse<K, V> { 			// Estrutura genérica que estará contida no array
+public class EstruturaClasse<K, V> { 			// Estrutura genérica que estará contida no array
 	protected K chave;
 	protected V valor;
 	
