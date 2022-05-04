@@ -5,7 +5,7 @@ import armazenamento.Estrutura;
 
 public class HeapSort {
 	public static void ordenar(Estrutura<?, ?>[] vetor) {
-		buildMaxHeap(vetor, vetor.length);
+		buildMaxHeap(vetor, vetor.length-1);
 		for(int i = vetor.length - 1; i >= 1; i--) {
 			Estrutura<?, ?> aux = vetor[0];
 			vetor[0] = vetor[i];
@@ -16,7 +16,7 @@ public class HeapSort {
 	}
 	
 	private static void buildMaxHeap(Estrutura<?, ?>[] vetor, int tamanho) {
-		for(int i = Math.floorDiv(tamanho, 2); i >= 0; i--) {
+		for(int i = (int)Math.floor((double)tamanho/2); i >= 0; i--) {
 			//System.out.println(i);
 			maxHeapify(vetor, i, tamanho);
 		}
@@ -27,13 +27,13 @@ public class HeapSort {
 		int d = dir(indice);
 		int maior;
 		
-		if(e < tamanhoAtual && vetor[e].compararCom(vetor[indice].getChave()) > 0) {
+		if(e <= tamanhoAtual && vetor[e].compararCom(vetor[indice].getChave()) > 0) {
 			maior = e;
 		} else {
 			maior = indice;
 		}
 		
-		if (d < tamanhoAtual && vetor[d].compararCom(vetor[maior].getChave()) > 0) {
+		if (d <= tamanhoAtual && vetor[d].compararCom(vetor[maior].getChave()) > 0) {
 			maior = d;
 		}
 		

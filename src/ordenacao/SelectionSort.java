@@ -33,8 +33,8 @@ public class SelectionSort {
 			int min = i;
 			int max = k;
 			
-			/* Aqui no "for" interno, "j < k" se deve ao fato de que não é necessário sempre iterar sobre todo o array, pois de "k" até "vetor.length-1",
-			 * os elementos serão sempre maiores que "min". O mesmo se aplica de "k-1" até o 1º elemento.
+			/* Aqui no "for" interno, "j <= k" se deve ao fato de que não é necessário sempre iterar sobre todo o array, pois de "k" (k > 0) até
+			 * "vetor.length-1", os elementos serão sempre maiores que "min". O mesmo se aplica de "k-1" até o 1º elemento.
 			 */
 			for(int j = i+1, l = k-1; j <= k; j++, l--) {
 				

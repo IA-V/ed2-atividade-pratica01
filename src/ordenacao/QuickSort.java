@@ -26,7 +26,7 @@ public class QuickSort {
 		while(i <= f) {
 			if(vetor[i].compararCom(pivo.getChave()) <= 0) {
 				i++;
-			} else if(vetor[i].compararCom(pivo.getChave()) > 0) {
+			} else if(vetor[f].compararCom(pivo.getChave()) > 0) {
 				f--;
 			} else {
 				Estrutura<?, ?> troca = vetor[i];
