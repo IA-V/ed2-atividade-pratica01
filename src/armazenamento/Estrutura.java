@@ -3,12 +3,14 @@ package armazenamento;
 import java.util.Comparator;
 
 public class Estrutura<K, V> { 			// Estrutura genérica que estará contida no array
+	Ordem tipoOrdem;
 	private K chave;
 	private V valor;
 	
-	public Estrutura(K chave, V valor) {
+	public Estrutura(K chave, V valor, Ordem tipoOrdem) {
 		this.valor = valor;
 		this.chave = chave;
+		this.tipoOrdem = tipoOrdem;
 	}
 	
 	public K getChave() {
@@ -26,12 +28,20 @@ public class Estrutura<K, V> { 			// Estrutura genérica que estará contida no ar
 	}
 	
 	public <K> int compararCom(K chaveP) {
-		if(this.chave instanceof String) { 				// Usando "this.chave" como parametro de "compareTo()", o vetor é ordenado em ordem decrescente
-			return((String)this.chave).compareTo((String)chaveP);
-		} else if (this.chave instanceof Integer) { 				// Usando "this.chave" como 2º parametro, o vetor é ordenado em ordem decrescente
-			return Integer.compare((int)this.chave, (int)chaveP); 
-		} else /*if (this.chave instanceof Double)*/ { 				// Usando "this.chave" como 2º parametro, o vetor é ordenado em ordem decrescente
-			return Double.compare((int)this.chave, (double)chaveP);
+		if(this.tipoOrdem == Ordem.values()[0]) {
+			return this.comparacao(this.chave, chaveP); // Ordenação em ordem crescente
+		} else {
+			return this.comparacao(chaveP, this.chave); // Ordenação em ordem decrescente (apenas inverte a ordem das chaves)
+		}
+	}
+	
+	private <K> int comparacao(K chaveO, K chaveP) {
+		if(chaveO instanceof String) {
+			return((String)chaveO).compareTo((String)chaveP);
+		} else if (chaveO instanceof Integer) {
+			return Integer.compare((int)chaveO, (int)chaveP); 
+		} else {
+			return Double.compare((double)chaveO, (double)chaveP);
 		}
 	}
 }

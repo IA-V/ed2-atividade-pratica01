@@ -1,44 +1,72 @@
 package main;
 import armazenamento.*;
 import ordenacao.*;
+import java.util.Scanner;
+import java.util.InputMismatchException;
+import java.util.Random;
 
 public class Main {
+										// "i" é p tamanho da String
+	private static String getRandomString(int i)  // Método para gerar strings aleatórias -> https://www.delftstack.com/pt/howto/java/random-alphanumeric-string-in-java/
+    { 
+        String theAlphaNumericS;
+        StringBuilder builder;
+        
+        theAlphaNumericS = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+                                    + "0123456789"; 
+
+        //create the StringBuffer
+        builder = new StringBuilder(i); 
+
+        for (int m = 0; m < i; m++) { 
+
+            // generate numeric
+            int myindex 
+                = (int)(theAlphaNumericS.length() 
+                        * Math.random()); 
+
+            // add the characters
+            builder.append(theAlphaNumericS 
+                        .charAt(myindex)); 
+        } 
+
+        return builder.toString(); 
+    }
+	
 	public static void main (String [] args) {
-		Estrutura<Integer, String>[] vetor = new Estrutura[20];
-		vetor[0] = new Estrutura<>(16, "cafe");
-		vetor[1] = new Estrutura<>(13, "agua");
-		vetor[2] = new Estrutura<>(12, "colchao");
-		vetor[3] = new Estrutura<>(18, "espada");
-		vetor[4] = new Estrutura<>(15, "duelo");
-		vetor[5] = new Estrutura<>(17, "duelo");
-		vetor[6] = new Estrutura<>(11, "duelo");
-		vetor[7] = new Estrutura<>(20, "duelo");
-		vetor[8] = new Estrutura<>(14, "duelo");
-		vetor[9] = new Estrutura<>(19, "duelo");
-		vetor[10] = new Estrutura<>(3, "cafe");
-		vetor[11] = new Estrutura<>(5, "agua");
-		vetor[12] = new Estrutura<>(2, "colchao");
-		vetor[13] = new Estrutura<>(10, "espada");
-		vetor[14] = new Estrutura<>(9, "duelo");
-		vetor[15] = new Estrutura<>(4, "duelo");
-		vetor[16] = new Estrutura<>(6, "duelo");
-		vetor[17] = new Estrutura<>(8, "duelo");
-		vetor[18] = new Estrutura<>(1, "duelo");
-		vetor[19] = new Estrutura<>(7, "duelo");
+		Scanner entrada = new Scanner(System.in);
+		int opcaoOrdem = 0;
+		int tamanhoVetor = 20;	// Definição do tamanho do vetor
+		Estrutura<Double, String>[] vetor = new Estrutura[tamanhoVetor]; // Definição do tipo de dado
 		
-		for(int i = 0; i < vetor.length; i++) {
-			System.out.println("Valor = " + vetor[i].getValor() + "\nChave = " + vetor[i].getChave() + "\n");
-		}
-		System.out.println("---------------------------------\n---------------------------------\n");
-		
-		//SelectionSort.ordenarMinMax(vetor); // Talvez, para valores muito pequenos, o selectionsort seja estavel
-		//InsertionSort.ordenar(vetor);
-		MergeSort.ordenarInsertion(vetor);
-		//QuickSort.ordenar(vetor);
-		//HeapSort.ordenar(vetor); // Talvez, para valores muito pequenos, o heapsort seja estavel
-		
-		for(int i = 0; i < vetor.length; i++) {
-			System.out.println("Valor = " + vetor[i].getValor() + "\nChave = " + vetor[i].getChave() + "\n");
+		try {
+			System.out.println("Ordenar em ordem crescente ou descrescente?\n1 - Crescente\t2 - Decrescente");
+			opcaoOrdem = entrada.nextInt();
+			Random gerador = new Random();
+			
+			for(int i = 0; i < tamanhoVetor; i++) {
+				vetor[i] = new Estrutura<>(gerador.nextDouble(25), getRandomString(15), Ordem.values()[opcaoOrdem-1]); // Inicialização do vetor
+			}
+			
+			System.out.println("Vetor desordenado:");
+			for(int i = 0; i < vetor.length; i++) {
+				System.out.println("[" + vetor[i].getChave() + ", " + vetor[i].getValor() + "]");
+			}
+			System.out.println("---------------------------------\n---------------------------------\n");
+			
+			//SelectionSort.ordenarMinMax(vetor); // Talvez, para valores muito pequenos, o selectionsort seja estavel
+			//InsertionSort.ordenar(vetor);
+			//MergeSort.ordenarInsertion(vetor);
+			//QuickSort.ordenar(vetor);
+			HeapSort.ordenar(vetor); // Talvez, para valores muito pequenos, o heapsort seja estavel
+			
+			System.out.println("Vetor ordenado:");
+			for(int i = 0; i < vetor.length; i++) {
+				System.out.println("[" + vetor[i].getValor() + ", " + vetor[i].getChave() + "]");
+			}
+			
+		} catch (InputMismatchException e) {
+			System.out.println("Insira um número inteiro!!!");
 		}
 	}
 }
