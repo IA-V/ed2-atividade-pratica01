@@ -1,7 +1,5 @@
 package armazenamento;
 
-import java.util.Comparator;
-
 public class Estrutura<K, V> { 			// Estrutura genérica que estará contida no array
 	Ordem tipoOrdem;
 	private K chave;
@@ -28,14 +26,14 @@ public class Estrutura<K, V> { 			// Estrutura genérica que estará contida no ar
 	}
 	
 	public <K> int compararCom(K chaveP) {
-		if(this.tipoOrdem == Ordem.values()[0]) {
-			return this.comparacao(this.chave, chaveP); // Ordenação em ordem crescente
+		if(this.tipoOrdem == Ordem.CRESCENTE) {
+			return this.fazerComparacao(this.chave, chaveP); // Ordenação em ordem crescente
 		} else {
-			return this.comparacao(chaveP, this.chave); // Ordenação em ordem decrescente (apenas inverte a ordem das chaves)
+			return this.fazerComparacao(chaveP, this.chave); // Ordenação em ordem decrescente (apenas inverte a ordem das chaves)
 		}
 	}
 	
-	private <K> int comparacao(K chaveO, K chaveP) {
+	private <K> int fazerComparacao(K chaveO, K chaveP) {
 		if(chaveO instanceof String) {
 			return((String)chaveO).compareTo((String)chaveP);
 		} else if (chaveO instanceof Integer) {

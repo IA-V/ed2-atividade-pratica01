@@ -3,24 +3,33 @@ package ordenacao;
 import armazenamento.Estrutura;
 
 public class MergeSort {
+	private static long countComparacoes = 0;
+	private static long countAtribuicoes1 = 0;
+	
 	public static void ordenar(Estrutura<?, ?>[] vetor) {
+		countComparacoes = 0;
+		countAtribuicoes1 = 0;
 		Estrutura<?, ?>[] temp = new Estrutura[vetor.length];
 		
 		mergeMain(vetor, temp, 0, vetor.length-1);
+		System.out.println("Numero de comparacoes = " + countComparacoes + "\nNumero de atribuicoes = " + countAtribuicoes1);
 	}
 	
 	public static void ordenarInsertion(Estrutura<?, ?>[] vetor) {
+		countComparacoes = 0;
+		countAtribuicoes1 = 0;
 		Estrutura<?, ?>[] temp = new Estrutura[vetor.length];
 		
 		mergeMainInsertion(vetor, temp, 0, vetor.length-1);
+		System.out.println("Numero de comparacoes = " + countComparacoes + "\nNumero de atribuicoes = " + countAtribuicoes1);
 	}
 	
 	private static Estrutura<?, ?>[] mergeMainInsertion(Estrutura<?, ?>[] vetor, Estrutura<?, ?>[] temp, int esq, int dir) {
 		int meio;
-		
+		countComparacoes++;
 		if(esq < dir) {
 			int numElem = dir-esq+1;
-			
+			countComparacoes++;
 			if(numElem >= 15) {
 				meio = (esq+dir)/2;
 				mergeMain(vetor, temp, esq, meio);
@@ -33,6 +42,7 @@ public class MergeSort {
 					chave = vetor[i];
 					int j;
 					for(j = i-1; j >= esq && vetor[j].compararCom(chave.getChave()) > 0; j--) {
+						countAtribuicoes1++;
 						vetor[j+1] = vetor[j];
 					}
 					vetor[j+1] = chave;
@@ -46,6 +56,7 @@ public class MergeSort {
 	private static Estrutura<?, ?>[] mergeMain(Estrutura<?, ?>[] vetor, Estrutura<?, ?>[] temp, int esq, int dir) {
 		int meio;
 		
+		countComparacoes++;
 		if(esq < dir) {
 			meio = (esq+dir)/2;
 			mergeMain(vetor, temp, esq, meio);
@@ -61,8 +72,8 @@ public class MergeSort {
 		int tempPos = esqPos;
 		int numElem = dirFim - esqPos + 1;
 		
-		//System.out.println("Cheguei aq\nnumElem = " + numElem);
 		while(esqPos <= esqFim && dirPos <= dirFim) {
+			countComparacoes++;
 			if(vetor[esqPos].compararCom(vetor[dirPos].getChave()) <= 0) {
 				temp[tempPos++] = vetor[esqPos++];
 			} else {
@@ -71,14 +82,17 @@ public class MergeSort {
 		}
 		
 		while(esqPos <= esqFim) {
+			countAtribuicoes1++;
 			temp[tempPos++] = vetor[esqPos++];
 		}
 		
 		while(dirPos <= dirFim) {
+			countAtribuicoes1++;
 			temp[tempPos++] = vetor[dirPos++];
 		}
 		
 		for(int i = 0; i < numElem; i++, dirFim--) {
+			countAtribuicoes1++;
 			vetor[dirFim] = temp[dirFim];
 		}
 		
