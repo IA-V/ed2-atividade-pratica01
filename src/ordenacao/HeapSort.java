@@ -4,22 +4,16 @@ import java.lang.Math;
 import armazenamento.Estrutura;
 
 public class HeapSort {
-	private static long countComparacoes = 0;
-	private static long countAtribuicoes1 = 0;
-	private static int countAtribuicoes2 = 0;
 	
 	public static void ordenar(Estrutura<?, ?>[] vetor) {
-		countComparacoes = 0;
-		countAtribuicoes1 = 0;
+
 		buildMaxHeap(vetor, vetor.length-1);
 		for(int i = vetor.length - 1; i >= 1; i--) {
 			Estrutura<?, ?> aux = vetor[0];
 			vetor[0] = vetor[i];
 			vetor[i] = aux;
-			countAtribuicoes1 += 3;
 			maxHeapify(vetor, 0, i - 1);
 		}
-		System.out.println("Numero de comparacoes = " + countComparacoes + "\nNumero de atribuicoes = " + countAtribuicoes1);
 	}
 	
 	private static void buildMaxHeap(Estrutura<?, ?>[] vetor, int tamanho) {
@@ -44,10 +38,8 @@ public class HeapSort {
 			maior = d;
 		}
 		
-		countComparacoes += 3;
 		
 		if(maior != indice) {
-			countAtribuicoes1 += 3;
 			Estrutura<?, ?> aux = vetor[maior];
 			vetor[maior] = vetor[indice];
 			vetor[indice] = aux;

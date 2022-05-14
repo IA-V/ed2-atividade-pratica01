@@ -1,6 +1,6 @@
 package armazenamento;
 
-public class Estrutura<K, V> { 			// Estrutura genérica que estará contida no array
+public class Estrutura<K, V> implements Comparable{ 			// Estrutura genérica que estará contida no array
 	Ordem tipoOrdem;
 	private K chave;
 	private V valor;
@@ -41,5 +41,11 @@ public class Estrutura<K, V> { 			// Estrutura genérica que estará contida no ar
 		} else {
 			return Double.compare((double)chaveO, (double)chaveP);
 		}
+	}
+
+	@Override
+	public int compareTo(Object o) {
+		// TODO Auto-generated method stub
+		return 0;
 	}
 }

@@ -1,38 +1,25 @@
 package ordenacao;
 
-import java.lang.Math;
 import armazenamento.Estrutura;
 
 public class SelectionSort {
 	public static void ordenar(Estrutura<?, ?>[] vetor) {
-		int countComparacoes = 0;
-		int countAtribuicoes1 = 0;
-		int countAtribuicoes2 = 0;
 		for(int i = 0; i < vetor.length-1; i++) {
 			int min = i;
 			for(int j = i+1; j < vetor.length; j++) {
-				countComparacoes += 1;
 				if(vetor[j].compararCom(vetor[min].getChave()) < 0) {
 					// Se o retorno do método for menor que 0, então o valor que está em "j" é menor que o que está em "min"
 					min = j;
-					countAtribuicoes2 += 1;
 				}
 			}
 			
 			Estrutura<?, ?> aux = vetor[i];
-			countAtribuicoes1 += 1;
 			vetor[i] = vetor[min];
-			countAtribuicoes1 += 1;
 			vetor[min] = aux;
-			countAtribuicoes1 += 1;
 		}
-		System.out.println("Numero de comparacoes = " + countComparacoes + "\nNumero de atribuicoes do for mais externo = " + countAtribuicoes1 + "\nNumero de atribuicoes 'min = j' = " + countAtribuicoes2);
 	}
 	
 	public static void ordenarMinMax(Estrutura<?, ?>[] vetor) {
-		int countComparacoes = 0;
-		int countAtribuicoes1 = 0;
-		int countAtribuicoes2 = 0;
 		/* Inicializa "i" com o primeiro índice e "k" com o último índice.
 		 * A condição é "i < k" porque, a partir de "k" até o último elemento, o array já estará ordenado.
 		 */
@@ -48,15 +35,11 @@ public class SelectionSort {
 				// Se o retorno do método for menor que 0, então o valor que está em "j" é menor que o que está em "min"
 				if(vetor[j].compararCom(vetor[min].getChave()) < 0) {
 					min = j;
-					countAtribuicoes2 += 1;
 				}
-				countComparacoes += 1;
 				// Se o retorno do método for maior que 0, então o valor que está em "l" é maior que o que está em "max"
 				if(vetor[l].compararCom(vetor[max].getChave()) > 0) {
 					max = l;
-					countAtribuicoes2 += 1;
 				}
-				countComparacoes += 1;
 			}
 			
 			Estrutura<?, ?> aux = vetor[i];
@@ -66,7 +49,6 @@ public class SelectionSort {
 			/* Se "max" for igual a "i", "max" deve receber "min" porque "i" e "min" já tiveram seus valores trocados nas linhas 46-48, o que significa que
 			 * o maior valor está, agora, em "min".
 			 */
-			countAtribuicoes2 += 1;
 			if(max == i) {
 				max = min;
 			}
@@ -74,9 +56,7 @@ public class SelectionSort {
 			aux = vetor[k];
 			vetor[k] = vetor[max];
 			vetor[max] = aux;
-			countAtribuicoes1 += 1;
 		}
 		
-		System.out.println("Numero de comparacoes = " + countComparacoes + "\nNumero de atribuicoes do for mais externo = " + (countAtribuicoes1*6) + "\nNumero de atribuicoes 'min = j' = " + countAtribuicoes2);
 	}
 }

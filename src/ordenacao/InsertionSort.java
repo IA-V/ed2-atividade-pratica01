@@ -14,6 +14,5 @@ public class InsertionSort {
 			vetor[j+1] = chave;
 		}
 		
-		//return vetor;
 	}
 }
